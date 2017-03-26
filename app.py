@@ -15,8 +15,11 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['GET'])
 def webhook():
-    start = str(request.args.get('start'))
-    end = str(request.args.get('end'))
+    #start = str(request.args.get('start'))
+    #end = str(request.args.get('end'))
+    start = "2184 Pettigrew Drive"
+    end ="6816 Turturici Court"
+    
     google_maps_results = GoogleMaps(start, end)
     print(google_maps_results)
     uber_results = Uber(google_maps_results[0], google_maps_results[1], google_maps_results[2], google_maps_results[3])
