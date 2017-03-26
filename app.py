@@ -31,6 +31,7 @@ def webhook():
 def makeWebhookResult(uber_results, lyft_results):
     speech = "The cost is " + str(uber_results) + " for Uber and $" + str(lyft_results) + " for Lyft."
     
+    print(speech)
     return {
         "speech": speech,
         "displayText": speech,
