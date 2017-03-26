@@ -5,6 +5,7 @@ import os
 
 from flask import Flask
 from flask import request
+from flash import make_response
 
 from gmaps import GoogleMaps
 from uber import Uber
@@ -24,8 +25,12 @@ def webhook():
     print(google_maps_results)
     uber_results = Uber(google_maps_results[0], google_maps_results[1], google_maps_results[2], google_maps_results[3])
     lyft_results = Lyft(google_maps_results[0], google_maps_results[1], google_maps_results[2], google_maps_results[3])
-    res = makeWebhookResult(uber_results, lyft_results)
-    return json.dumps(res)
+    #res = makeWebhookResult(uber_results, lyft_results)
+    res = json.dumps(makeWebhookResult(uber_results, lyft_results), indent = 4)
+    r = make_response(res)
+    r.headers['Content_Type'] = 'application/json'
+    return r
+    
 
 
 def makeWebhookResult(uber_results, lyft_results):
