@@ -13,7 +13,7 @@ from lyft import Lyft
 # Flask app should start in global layout
 app = Flask(__name__)
 
-@app.route('/webhook', methods=['GET'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
     #start = str(request.args.get('start'))
     #end = str(request.args.get('end'))
