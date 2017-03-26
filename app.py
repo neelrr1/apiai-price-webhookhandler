@@ -5,7 +5,7 @@ import os
 
 from flask import Flask
 from flask import request
-from flash import make_response
+from flask import make_response
 
 from gmaps import GoogleMaps
 from uber import Uber
