@@ -19,7 +19,7 @@ def webhook():
     #start = str(request.args.get('start'))
     #end = str(request.args.get('end'))
     start = "2184 Pettigrew Drive"
-    end ="6816 Turturici Court"
+    end ="4269 Littleworth Way"
     
     google_maps_results = GoogleMaps(start, end)
     print(google_maps_results)
