@@ -16,11 +16,18 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
+    #GET Location data
+    req = request.get_json(silent=True, force=True)
+
+    result = req.get("result")
+    parameters = result.get("parameters")
+    start = parameters.get("start")
+    end = parameters.get("end")
     #start = str(request.args.get('start'))
     #end = str(request.args.get('end'))
-    start = "2184 Pettigrew Drive"
-    end ="4269 Littleworth Way"
-    
+    # start = "2184 Pettigrew Drive"
+    # end ="4269 Littleworth Way"
+
     google_maps_results = GoogleMaps(start, end)
     print(google_maps_results)
     uber_results = Uber(google_maps_results[0], google_maps_results[1], google_maps_results[2], google_maps_results[3])
@@ -30,12 +37,13 @@ def webhook():
     r = make_response(res)
     r.headers['Content_Type'] = 'application/json'
     return r
-    
+
 
 
 def makeWebhookResult(uber_results, lyft_results):
+
     speech = "The cost is " + str(uber_results) + " for Uber and $" + str(lyft_results) + " for Lyft."
-    
+
     print(speech)
     return {
         "speech": speech,
